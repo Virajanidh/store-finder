@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import SearchForm from './SearchForm';
-import MoviesContainer from './MoviesContainer';
+import ProductContainer from './ProductContainer';
 import Spinner from '../layout/Spinner';
 
 export class Landing extends Component {
@@ -12,7 +12,7 @@ export class Landing extends Component {
     return (
       <div className="container">
         <SearchForm />
-        {loading ? <Spinner /> : <MoviesContainer />}
+        {loading ? <Spinner /> : <ProductContainer />}
       </div>
     );
   }

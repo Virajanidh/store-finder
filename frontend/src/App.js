@@ -8,7 +8,7 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 
 import Landing from './components/home/Landing';
-import Movie from './components/home/Movie';
+import Product from './components/home/Product';
 
 import store from './store';
 
@@ -20,7 +20,7 @@ class App extends Component {
           <div>
             <Navbar />
             <Route exact path="/" component={Landing} />
-            <Route exact path="/products/:id" component={Movie} />
+            <Route exact path="/products/:id" component={Product} />
           </div>
         </Router>
       </Provider>
