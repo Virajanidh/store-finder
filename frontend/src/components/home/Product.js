@@ -42,6 +42,16 @@ export class Product extends Component {
           </div>
         </div>
 
+        <div className="row">
+          <div className="card card-body bg-dark my-5 text-light">
+            <div className="col-md-12">
+              <Link to="/" className="btn btn-secondary">
+                Go Back To Search
+              </Link>
+            </div>
+          </div>
+        </div>
+
       </div>
     );
 

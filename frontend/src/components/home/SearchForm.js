@@ -10,13 +10,34 @@ import {
 
 export class SearchForm extends Component {
 
+  constructor(props){
+    super(props)
+    this.state = { searchText:'',location:''}
+    this.handleChange = this.handleChange.bind(this)
+  }
+
+  handleChange(event){
+    this.setState({
+      // Computed property names
+      // keys of the objects are computed dynamically
+      [event.target.name] : event.target.value
+    })
+  }
+
   test =()=>{
     console.log('success')
+    console.log('name;',this.state.searchText,'location',this.state.location)
+    let searchText =this.state.searchText;
+    let  location = this.state.location
+    if (searchText !== '' &&  location!== ''){
+      this.props.searchProduct(searchText+'/'+location);
+    } 
   }
   
   onChange = e => {
     this.props.searchProduct(e.target.value);
   };
+
 
   onSubmit = e => {
     e.preventDefault();
@@ -25,7 +46,7 @@ export class SearchForm extends Component {
   };
 
   render() {
-    
+    this.test();
     return (
       <div className="jumbotron jumbotron-fluid mt-5 text-center">
         <div className="container">
@@ -42,9 +63,9 @@ export class SearchForm extends Component {
                           type="text"
                           className="form-control"
                           name="searchText"
-                         
+                          
                           placeholder="Search Item ..."
-                          onChange={this.onChange}
+                          onChange={this.handleChange}
                     />
                   </th>
                   <th scope="col">
@@ -52,9 +73,9 @@ export class SearchForm extends Component {
                           type="text"
                           className="form-control"
                           name="location"
-                          
+                          value = {this.state.location}
                           placeholder="Your District ..."
-                          onChange={this.onChangeHandle}
+                          onChange={this.handleChange}
                     />
                   </th> 
                 </tr>

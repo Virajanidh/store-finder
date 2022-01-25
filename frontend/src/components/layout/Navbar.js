@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import myIcon from './Paomedia-Small-N-Flat-Shop.ico'
 
 function Navbar() {
   return (
@@ -13,10 +14,7 @@ function Navbar() {
           </div>
           <ul className="navbar-nav ml-auto text-light d-inline-block">
             <li className="nav-item d-inline-block mr-4">
-              <i className="fab fa-imdb fa-5x" id="imdb-logo" />
-            </li>
-            <li className="nav-item d-inline-block mr-4">
-              <i className="fab fa-react fa-5x" id="react-logo" />
+            <img src ={myIcon} width="96" height="95" />
             </li>
           </ul>
         </div>
