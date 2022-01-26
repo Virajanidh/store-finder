@@ -37,6 +37,12 @@ export class Product extends Component {
               <li className="list-group-item">
                 <strong>Available amount:</strong> {newitem.amount}
               </li>
+              <li className="list-group-item">
+                <strong>Shop Name:</strong> {newitem.store_name}
+              </li>
+              <li className="list-group-item">
+                <strong>Shop location:</strong> {newitem.address}
+              </li>
               
             </ul>
           </div>

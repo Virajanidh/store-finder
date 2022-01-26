@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import "./dropdownbutton.css"
 import { connect } from 'react-redux';
 
 import {
@@ -69,14 +69,19 @@ export class SearchForm extends Component {
                     />
                   </th>
                   <th scope="col">
-                    <input
+                  
+
+                  <input
                           type="text"
                           className="form-control"
                           name="location"
                           value = {this.state.location}
                           placeholder="Your District ..."
                           onChange={this.handleChange}
-                    />
+                    /> 
+
+                  
+                    
                   </th> 
                 </tr>
               </thead>
@@ -88,10 +93,23 @@ export class SearchForm extends Component {
 
           </form>
         </div>
+
+
       </div>
     );
   }
 }
+
+/*
+ <input
+                          type="text"
+                          className="form-control"
+                          name="location"
+                          value = {this.state.location}
+                          placeholder="Your District ..."
+                          onChange={this.handleChange}
+                    />  
+*/
 
 const mapStateToProps = state => ({
   text: state.products.text

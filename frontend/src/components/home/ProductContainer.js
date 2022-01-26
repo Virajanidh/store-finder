@@ -7,8 +7,8 @@ import ProductCard from './ProductCard';
 export class ProductsContainer extends Component {
   render() {
     const { products } = this.props;
-    console.log("products: ",products["products"]);
-    console.log("product length: ", products);
+    console.log("products: ",products["information"]);
+    console.log("product : ", products);
    // let content = '';
 
 /*
@@ -20,8 +20,8 @@ export class ProductsContainer extends Component {
         : null; */
 
       const content = [];
-      if (products["products"] !== undefined)
-        for (let item of products["products"]) {
+      if (products["information"] !== undefined)
+        for (let item of products["information"]) {
           const row = (
             <ProductCard  product={item} />
           );

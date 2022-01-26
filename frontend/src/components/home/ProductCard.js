@@ -30,8 +30,9 @@ export class ProductCard extends Component {
       <div className="card card-body bg-dark text-center h-100">
         
         <h5 className="text-light card-title">
-          {product.name} - {product.store_id}
+          {product.name} at shop - {product.store_name}
         </h5>
+        <h6>{product.address}</h6>
         <Link className="btn btn-primary" to={'/products/' + product.store_id}>
           More Details
           <i className="fas fa-chevron-right" />

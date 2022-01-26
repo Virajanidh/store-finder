@@ -10,7 +10,7 @@ export const searchProduct = text => dispatch => {
 
 export const fetchProducts = text => dispatch => {
   axios
-    .get(`http://127.0.0.1:5000/products/`+text)
+    .get(`http://127.0.0.1:5000/users/products/`+text)
     .then(response =>
       dispatch({
         type: FETCH_PRODUCTS,
