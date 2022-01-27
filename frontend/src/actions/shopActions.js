@@ -15,11 +15,18 @@ export const registerStore = data => dispatch => {
     .post('http://127.0.0.1:5000/register', data )
     .then((response) => {
         console.log(response)
-        if (response.status == 200){
+        if(response.data =="The email already registered!!!" ){
+            alert("The email already registered!!!")
+        }
+        else if (response.status == 200){
             dispatch({
               type : REGISTER,
               payload : true
              });
+             dispatch({
+                type : LOGGEDIN,
+                payload : true
+               });
              alert("registration successfull")
         }
      /*   else if (response.status == 208){

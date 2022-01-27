@@ -33,7 +33,7 @@ export class Navbar extends Component {
                 
               </Link>
               <Link as={NavLink} className="nav-link" to={'/loginLogoutControl'}>
-              <h5> {this.props.isloggedin ? "Hii " : "Log In" } </h5>
+              <h5> {this.props.isloggedin ? "Welcome!! " : "Log In" } </h5>
               </Link>
               
 
