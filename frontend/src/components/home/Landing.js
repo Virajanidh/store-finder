@@ -5,13 +5,17 @@ import { connect } from 'react-redux';
 import SearchForm from './SearchForm';
 import ProductContainer from './ProductContainer';
 import Spinner from '../layout/Spinner';
+import { Loginform } from '../shop/Loginform';
+import {Suggestions} from './Suggestions';
 
 export class Landing extends Component {
+
+
   render() {
     const { loading } = this.props;
     return (
       <div className="container">
-        <SearchForm />
+        <SearchForm /> 
         {loading ? <Spinner /> : <ProductContainer />}
       </div>
     );

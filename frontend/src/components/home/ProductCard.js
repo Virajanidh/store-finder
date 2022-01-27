@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import './grid.css';
 
 export class ProductCard extends Component {
   render() {
@@ -30,9 +31,13 @@ export class ProductCard extends Component {
       <div className="card card-body bg-dark text-center h-100">
         
         <h5 className="text-light card-title">
-          {product.name} at shop - {product.store_name}
+          {product.name} at - 
+          
         </h5>
+        <h5>{product.store_name}</h5>
         <h6>{product.address}</h6>
+        <h6>description - {product.description}</h6>
+         <h6> amount - {product.amount}</h6>
         <Link className="btn btn-primary" to={'/products/' + product.store_id}>
           More Details
           <i className="fas fa-chevron-right" />

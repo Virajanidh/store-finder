@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import './grid.css'
 import { connect } from 'react-redux';
 
 import ProductCard from './ProductCard';
