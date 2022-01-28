@@ -16,11 +16,14 @@ export class SearchForm extends Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
+  handleChangedistrict=(event)=>{this.setState({location :event.target.value});}
+
   handleChange(event){
+    let text =event.target.value;
     this.setState({
       // Computed property names
       // keys of the objects are computed dynamically
-      [event.target.name] : event.target.value
+      [event.target.name] : text.toLowerCase()
     })
   }
 
@@ -59,6 +62,7 @@ export class SearchForm extends Component {
               <thead>
                 <tr>
                   <th scope="col">
+                  <div class="form-group">
                     <input
                           type="text"
                           className="form-control"
@@ -67,18 +71,45 @@ export class SearchForm extends Component {
                           placeholder="Search Item ..."
                           onChange={this.handleChange}
                     />
+                    </div>
                   </th>
                   <th scope="col">
                   
 
-                  <input
-                          type="text"
-                          className="form-control"
-                          name="location"
-                          value = {this.state.location}
-                          placeholder="Your District ..."
-                          onChange={this.handleChange}
-                    /> 
+                          <div class="form-group">
+                            <label for="exampleSelect2" class="form-label mt-4">District</label>
+                            <select multiple="" class="form-select" id="exampleSelect2"
+                            value={this.state.district} 
+                            onChange={this.handleChangedistrict} 
+                            >
+                            <option value =""></option>
+                            <option value ="ratnapura">Ratnapura</option>
+                            <option value = "kegalle">Kegalle</option>
+                            <option value = "colombo">Colombo</option>
+                            <option value = "kalutara">Kalutara</option>
+                            <option value = "gampaha">Gampaha</option>
+                            <option value = "kandy">Kandy</option>
+                            <option value = "matale">Matale</option>
+                            <option value = "nuwara eliya">Nuwara Eliya</option>
+                            <option value = "galle">Galle</option>
+                            <option value = "matara">Matara</option>
+                            <option value = "hambantota">Hambantota</option>
+                            <option value = "jaffna">Jaffna</option>
+                            <option value = "kilinochchi">Kilinochchi</option>
+                            <option value = "mannar">Mannar</option>
+                            <option value = "vavuniya">Vavuniya</option>
+                            <option value = "mullaitivu">Mullaitivu</option>
+                            <option value = "batticaloa">Batticaloa</option>
+                            <option value = "ampara">Ampara</option>
+                            <option value = "trincomalee">Trincomalee</option>
+                            <option value = "kurunegala">Kurunegala</option>
+                            <option value = "puttalam">Puttalam</option>
+                            <option value = "anuradhapura">Anuradhapura</option>
+                            <option value = "polonnaruwa">Polonnaruwa</option>
+                            <option value = "badulla">Badulla</option>
+                            <option value = "moneragala">Moneragala</option>
+                            </select>
+                        </div>
 
                   
                     

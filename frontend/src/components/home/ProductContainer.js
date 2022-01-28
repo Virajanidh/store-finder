@@ -27,8 +27,13 @@ export class ProductsContainer extends Component {
           );
           content.push(row);
         }
-
-    return <div className="row"><h1>{content}</h1></div>;
+      
+    return ( <div>
+      
+    
+    <div className="alert alert-dismissible alert-light">{content}</div>
+    </div>
+    );
 
   }
 }

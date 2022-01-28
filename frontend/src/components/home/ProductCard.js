@@ -27,25 +27,43 @@ export class ProductCard extends Component {
       </div>
     ); */
     return(
-      <div className="col-md-3 mb-5">
-      <div className="card card-body bg-dark text-center h-100">
-        
-        <h5 className="text-light card-title">
-          {product.name} at - 
+     
+        <div class="list-group">
           
-        </h5>
-        <h5>{product.store_name}</h5>
-        <h6>{product.address}</h6>
-        <h6>description - {product.description}</h6>
-         <h6> amount - {product.amount}</h6>
-        <Link className="btn btn-primary" to={'/products/' + product.store_id}>
-          More Details
-          <i className="fas fa-chevron-right" />
-        </Link>
+          <h5>{product.name} at {product.store_name} </h5>
+          <div className="card text-white bg-primary mb-3" style={{maxWidth: '60rem'}}>
+          <a href="#" class="list-group-item list-group-item-action active">
+          <h6> Address : {product.address}</h6> </a>
+          <a href="#" class="list-group-item list-group-item-action">
+          <h6> Description : {product.description}</h6> </a>
+          <a href="#" class="list-group-item list-group-item-action disabled">
+          <h6>  Amount : {product.amount}</h6> </a>
+        </div>
       </div>
-    </div>
+    
     );
   }
 }
 
 export default ProductCard;
+
+/*
+  <div className="col-md-3 mb-5">
+        <div className="card card-body bg-dark text-center h-100">
+        
+            <h5 className="text-light card-title">
+              {product.name} at - 
+              
+            </h5>
+            <h5>{product.store_name}</h5>
+            <h6>{product.address}</h6>
+            <h6>description - {product.description}</h6>
+            <h6> amount - {product.amount}</h6>
+            <Link className="btn btn-primary" to={'/products/' + product.store_id}>
+              More Details
+              <i className="fas fa-chevron-right" />
+            </Link>
+          </div>
+        </div>
+
+*/
