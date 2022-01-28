@@ -78,7 +78,7 @@ export class Create extends Component{
       setEditDescription('');
       setEditAmount('');
       setProductId(null);*/
-      this.setState({productsList:[],productID:null, editDescription:"",editAmount})
+      this.setState({productsList:updatedList,productID:null, editDescription:"",editAmount})
    }
 
     fetchProducts = async () => {

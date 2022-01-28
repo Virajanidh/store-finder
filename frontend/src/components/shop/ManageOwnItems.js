@@ -17,11 +17,15 @@ export class ManageOwnItems extends Component {
           <h1 align = 'center' >Manage your Products</h1>
           <div className='row'>
             <Link style={{maxWidth:'30rem'}} btn btn-outline-primary to={'/create'}>
+              <h5> Edit / Delete product </h5>
+            </Link>
+            <Link style={{maxWidth:'30rem'}} btn btn-outline-primary to={'/addproduct'}>
               <h5> Add product </h5>
             </Link>
-            <button class="btn btn-outline-secondary" type="button">Update Items</button>
-            <button class="btn btn-outline-primary" type="button">View My Items</button>
-            <button class="btn btn-outline-secondary" type="button">Delete Items</button>
+            <Link style={{maxWidth:'30rem'}} btn btn-outline-primary to={'/areasuggestions'}>
+              <h5> Preference at Area  </h5>
+            </Link>
+            
           </div>
         </div>
       </div>

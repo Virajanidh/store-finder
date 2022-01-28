@@ -11,7 +11,9 @@ import Landing from './components/home/Landing';
 import Product from './components/home/Product';
 import RegistrationControl from './components/shop/RegistrationControl';
 import Suggestions  from './components/home/Suggestions';
-import Create from './components/ProductManagement/Create'
+import Create from './components/ProductManagement/Create';
+import AddProduct  from './components/ProductManagement/AddProduct';
+import AreaSuggestions from './components/ProductManagement/AreaSuggestions';
 
 
 
@@ -28,6 +30,8 @@ class App extends Component {
             <Route exact path="/products/:id" component={Product} />
             <Route exact path="/registrationControl" component={RegistrationControl} />
             <Route exact path="/loginLogoutControl" component={LoginLogoutControl} />
+            <Route exact path="/areasuggestions" component={AreaSuggestions} />
+            <Route exact path="/addproduct" component={AddProduct}/>
             <Route exact path="/create" component={Create} />
             <Route exact path="/suggestions" component={Suggestions} />
             
