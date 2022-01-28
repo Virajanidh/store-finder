@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import "./dropdownbutton.css"
 import { connect } from 'react-redux';
-
 import {
   searchProduct,
   fetchProducts,
@@ -51,6 +50,7 @@ export class SearchForm extends Component {
   render() {
     this.test();
     return (
+      <div>
       <div className="jumbotron jumbotron-fluid mt-5 text-center">
         <div className="container">
           <h1 className="display-4 mb-3">
@@ -124,7 +124,7 @@ export class SearchForm extends Component {
 
           </form>
         </div>
-
+        </div>
 
       </div>
     );

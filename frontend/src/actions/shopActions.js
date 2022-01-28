@@ -1,4 +1,4 @@
-import { REGISTER, REGFORM ,ERROR_LOGIN,LOGGEDIN} from './types';
+import { REGISTER, REGFORM ,ERROR_LOGIN,LOGGEDIN,LOGOUT} from './types';
 import axios from 'axios';
 
 export const regformFilling = data => dispatch => {
@@ -7,6 +7,13 @@ export const regformFilling = data => dispatch => {
       payload: data
     });
   };
+export const logout = () => {
+    return {
+        type: LOGOUT,
+        payload: false
+      };
+}
+
 
 
 export const registerStore = data => dispatch => {
@@ -21,7 +28,7 @@ export const registerStore = data => dispatch => {
         else if (response.status == 200){
             dispatch({
               type : REGISTER,
-              payload : true
+              payload : response.data
              });
              dispatch({
                 type : LOGGEDIN,
@@ -47,10 +54,14 @@ export const login = data => dispatch => {
     .post('http://127.0.0.1:5000/login', data )
     .then((response) => {
         console.log(response)
-        if (response.data == true){
+        if(response.data ==="Email or password is incorrect!"){
+            alert("Email or password is incorrect!")
+
+        }
+        else if (response.status == 200){
             dispatch({
               type : LOGGEDIN ,
-              payload : true
+              payload : response.data
              });
              alert("login successfull")
         }

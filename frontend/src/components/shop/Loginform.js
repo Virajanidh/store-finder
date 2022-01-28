@@ -72,7 +72,7 @@ export class Loginform extends Component {
 }
 
 const mapStateToProps = state => ({
-  isloggedin : state.shopOwner.isloggedin
+  isloggedin : state.products.isloggedin
 });
 
 export default connect(mapStateToProps,

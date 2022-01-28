@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+
 export class ManageOwnItems extends Component {
+
+  
+
   render() {
     
  
@@ -10,14 +15,19 @@ export class ManageOwnItems extends Component {
          
           <div class="d-grid gap-2">
           <h1 align = 'center' >Manage your Products</h1>
-            <button class="btn btn-lg btn-primary" type="button">Add Items</button>
-            <button class="btn btn-lg btn-primary" type="button">Update Items</button>
-            <button class="btn btn-lg btn-primary" type="button">View My Items</button>
-            <button class="btn btn-lg btn-primary" type="button">Delete Items</button>
+          <div className='row'>
+            <Link style={{maxWidth:'30rem'}} btn btn-outline-primary to={'/create'}>
+              <h5> Add product </h5>
+            </Link>
+            <button class="btn btn-outline-secondary" type="button">Update Items</button>
+            <button class="btn btn-outline-primary" type="button">View My Items</button>
+            <button class="btn btn-outline-secondary" type="button">Delete Items</button>
+          </div>
         </div>
       </div>
     );
   }
 }
+
 
 export default ManageOwnItems;

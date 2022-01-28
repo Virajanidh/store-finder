@@ -6,3 +6,4 @@ export const REGISTER = 'REGISTER';
 export const LOGGEDIN = 'LOGGEDIN';
 export const REGFORM ="REGFORM";
 export const ERROR_LOGIN = "ERROR_LOGIN"
+export const LOGOUT = "LOGOUT"

@@ -5,5 +5,5 @@ import shopReducer from './shopReducer';
 
 export default combineReducers({
   products: searchReducer,
-  shopOwner : shopReducer
+ // shopOwner : shopReducer
 });

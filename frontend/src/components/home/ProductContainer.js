@@ -27,10 +27,18 @@ export class ProductsContainer extends Component {
           );
           content.push(row);
         }
+      if(content.length===0 && this.props.text !='' && this.props.isUserIn){
+        return(
+          <div>
+          <div class="alert alert-dismissible alert-success" style={{maxWidth:'40rem'}}>
+          <strong>Ooops Sorry!...  </strong>No match found. <p >See you next time!!</p>
+          </div>
+          </div>
+        )
+      }
       
     return ( <div>
-      
-    
+          <p class="text-warning" id='errormsg'></p> 
     <div className="alert alert-dismissible alert-light">{content}</div>
     </div>
     );
@@ -39,7 +47,9 @@ export class ProductsContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  products: state.products.products
+  products: state.products.products,
+  text : state.products.text,
+  isUserIn :state.products.isUserIn
 });
 
 export default connect(mapStateToProps)(ProductsContainer);

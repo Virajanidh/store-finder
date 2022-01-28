@@ -11,6 +11,7 @@ import Landing from './components/home/Landing';
 import Product from './components/home/Product';
 import RegistrationControl from './components/shop/RegistrationControl';
 import Suggestions  from './components/home/Suggestions';
+import Create from './components/ProductManagement/Create'
 
 
 
@@ -22,12 +23,14 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <div>
-            <Navbar />
+            <Navbar/>
             <Route exact path="/" component={Landing} />
             <Route exact path="/products/:id" component={Product} />
             <Route exact path="/registrationControl" component={RegistrationControl} />
             <Route exact path="/loginLogoutControl" component={LoginLogoutControl} />
+            <Route exact path="/create" component={Create} />
             <Route exact path="/suggestions" component={Suggestions} />
+            
           </div>
         </Router>
       </Provider>

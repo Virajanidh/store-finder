@@ -58,7 +58,7 @@ export class RegisterShopForm extends Component {
     return (
       <div className="jumbotron jumbotron-fluid mt-5 text-center">
 
-        <h1>Register Store</h1>
+        <h1>Register New Store</h1>
         <div className="container">
         
           <form id="searchForm"onSubmit={this.onSubmit} >
@@ -145,8 +145,8 @@ export class RegisterShopForm extends Component {
 
 
 const mapStateToProps = state => ({
-  data: state.shopOwner.data,
-  isSuccessfullregister: state.shopOwner.isSuccessfullregister
+  data: state.products.data,
+  isSuccessfullregister: state.products.isSuccessfullregister
 });
 
 export default connect(

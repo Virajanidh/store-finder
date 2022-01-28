@@ -2,8 +2,12 @@ import React, { Component } from 'react';
 import { Link , NavLink} from 'react-router-dom';
 import myIcon from './Paomedia-Small-N-Flat-Shop.ico'
 import { connect } from 'react-redux';
-
+import {logout} from '../../actions/shopActions';
 export class Navbar extends Component {
+
+  userlogout =() => {
+    this.props.logout();
+  }
 
 
   render(){
@@ -23,17 +27,23 @@ export class Navbar extends Component {
             <ul class="navbar-nav me-auto">
               <li class="nav-item">
                 <a class="nav-link active" href="/">
-                  <h5>Home</h5>
+                  <h5> {isSuccessfullregister||this.props.isloggedin ? " " : "Home" } </h5>
+
                   <span class="visually-hidden">(current)</span>
                 </a>
               </li>
           
               <Link as={NavLink} className="nav-link" to={'/registrationControl'}>
-              <h5> {isSuccessfullregister ? "Hi  "+this.props.data.name : "Register" } </h5>
+              <h5> {isSuccessfullregister ? "Hi  "+this.props.data.name : "Register New Store" } </h5>
                 
               </Link>
               <Link as={NavLink} className="nav-link" to={'/loginLogoutControl'}>
-              <h5> {this.props.isloggedin ? "Welcome!! " : "Log In" } </h5>
+              <h5> {this.props.isloggedin || isSuccessfullregister  ? "" : "Log In" } </h5>
+              </Link>
+              <Link  as={NavLink} className="nav-link" to={'/'}>
+              <button type="button" class="btn btn-primary " onClick={this.userlogout}>
+              <h5> {this.props.isloggedin || isSuccessfullregister ? "Logout " : " " } </h5>
+              </button>
               </Link>
               
 
@@ -54,13 +64,13 @@ export class Navbar extends Component {
 
 //export default Navbar;
 const mapStateToProps = state => ({
-  isSuccessfullregister: state.shopOwner.isSuccessfullregister,
-  data : state.shopOwner.data,
-  isloggedin : state.shopOwner.isloggedin
+  isSuccessfullregister: state.products.isSuccessfullregister,
+  data : state.products.data,
+  isloggedin : state.products.isloggedin
 });
 
 export default connect(
-  mapStateToProps,
+  mapStateToProps,{logout}
 )(Navbar);
 
 /*

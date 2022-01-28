@@ -20,7 +20,7 @@ export class RegistrationControl extends Component {
 
 const mapStateToProps = state => ({
     
-    isSuccessfullregister : state.shopOwner.isSuccessfullregister
+    isSuccessfullregister : state.products.isSuccessfullregister
 });
 
 export default connect(mapStateToProps)(RegistrationControl);

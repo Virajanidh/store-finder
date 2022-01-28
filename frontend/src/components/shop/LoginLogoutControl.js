@@ -20,7 +20,7 @@ export class LoginLogoutControl extends Component {
 }
 
 const mapStateToProps = state => ({
-    isloggedin : state.shopOwner.isloggedin,
+    isloggedin : state.products.isloggedin,
     
 });
 
