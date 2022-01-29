@@ -3,7 +3,7 @@ import {
   FETCH_PRODUCTS,
   FETCH_PRODUCT,
   LOADING,
-  LOGGEDIN, REGFORM, REGISTER,ERROR_LOGIN, LOGOUT 
+  LOGGEDIN, REGFORM, REGISTER,ERROR_LOGIN, LOGOUT, REG_ERROR 
 } from '../actions/types';
 
 const initialState = {
@@ -15,7 +15,8 @@ const initialState = {
   data : [],
   isSuccessfullregister : false,
   isloggedin :false,
-  error_msg: ''
+  error_msg: '',
+  reg_error : ''
 };
 
 const searchReducer = (state = initialState, action)=> {
@@ -54,7 +55,8 @@ const searchReducer = (state = initialState, action)=> {
         return {
           ...state,
           isSuccessfullregister: action.payload,
-          data:action.payload
+          data:action.payload,
+          reg_error:'Successfully registered'
         };
         case LOGGEDIN:
           return {
@@ -75,7 +77,12 @@ const searchReducer = (state = initialState, action)=> {
             isloggedin : action.payload,
             isSuccessfullregister :action.payload
           };
-
+    case REG_ERROR:
+      return {
+        ...state,
+        isSuccessfullregister: false,
+        reg_error:action.payload
+      };
       
     default:
       return state;

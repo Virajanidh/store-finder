@@ -30,10 +30,31 @@ export class AddProduct extends Component {
         let name =this.state.name
         let description = this.state.description
         let amount =this.state.amount
+        const response =""
         
-        if(name!="" && description!="" && amount >0){
+       // if(name!="" && description!="" && amount >0){
             await axios.post(`${baseUrl}/products/${store_id}`, {store_id,name,description,amount})
-        
+            .then((res) => {
+                if(res.data=="Non of the feilds cannot be empty !!!!"){
+                    document.querySelector('#errormsg1').textContent=res.data
+                }
+                else if(res.data=="The name cannot be numeric !!!!"){
+                    document.querySelector('#errormsg1').textContent=res.data
+                }
+                else if(res.data=="Amount should be a positive integer !!!!"){
+                    document.querySelector('#errormsg1').textContent=res.data
+                }
+               else if(res.status==200){
+                    document.querySelector('#errormsg1').textContent="Product Succcessfully added !!!!"
+                }
+                else{
+                    document.querySelector('#errormsg1').textContent=""
+                }
+
+            }).catch((error) => {
+                document.querySelector('#errormsg1').textContent=error
+        })
+    
         console.log (store_id,name,description,amount)
 
         this.setState({
@@ -42,14 +63,14 @@ export class AddProduct extends Component {
         description:"",
         amount:""
         })
-        document.querySelector('#errormsg1').textContent="Submit Successfull";
-        document.querySelector('#errormsg2').textContent="";
-    }
+      //  document.querySelector('#errormsg1').textContent="Submit Successfull";
+       // document.querySelector('#errormsg2').textContent="";
+   /* }
     else{
         document.querySelector('#errormsg1').textContent="Please complete all the fields";
         document.querySelector('#errormsg2').textContent="Available amount must be greater than 0";
     }
-    /*       setStore_id('');
+       setStore_id('');
        setName('');
        setDescription('');
        setAmount('');*/

@@ -1,4 +1,4 @@
-import { REGISTER, REGFORM ,ERROR_LOGIN,LOGGEDIN,LOGOUT} from './types';
+import { REGISTER, REGFORM ,ERROR_LOGIN,LOGGEDIN,LOGOUT,REG_ERROR} from './types';
 import axios from 'axios';
 
 export const regformFilling = data => dispatch => {
@@ -23,7 +23,42 @@ export const registerStore = data => dispatch => {
     .then((response) => {
         console.log(response)
         if(response.data =="The email already registered!!!" ){
-            alert("The email already registered!!!")
+            //alert("The email already registered!!!")
+            dispatch({
+                type : REG_ERROR,
+                payload : response.data
+               });
+
+        }
+        else if(response.data=='Non of the feilds can be empty!!!!'){
+            dispatch({
+                type : REG_ERROR,
+                payload : response.data
+               });
+        }
+        else if(response.data== 'The feilds name, city, district cannot be numeric !!!!'){
+            dispatch({
+                type : REG_ERROR,
+                payload : response.data
+               });
+        }
+        else if(response.data =='The passowrd should contain atleast 8 charcters with !!!!'){
+            dispatch({
+                type : REG_ERROR,
+                payload : response.data
+               });
+        }
+        else if(response.data=='The password ahould contain atleast one upper case letter !!!!'){
+            dispatch({
+                type : REG_ERROR,
+                payload : response.data
+               });
+        }
+        else if(response.data=='The password ahould contain atleast one integer !!!!'){
+            dispatch({
+                type : REG_ERROR,
+                payload : response.data
+               });
         }
         else if (response.status == 200){
             dispatch({
@@ -34,7 +69,7 @@ export const registerStore = data => dispatch => {
                 type : LOGGEDIN,
                 payload : true
                });
-             alert("registration successfull")
+             
         }
      /*   else if (response.status == 208){
             alert('user email already exist')

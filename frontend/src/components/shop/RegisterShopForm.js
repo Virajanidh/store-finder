@@ -132,7 +132,7 @@ export class RegisterShopForm extends Component {
             </button>
             
           </form>
-          <p class="text-warning" id='errormsg'></p> 
+          <p class="text-warning" id='errormsg'>{this.props.reg_error}</p> 
         </div>
 
 
@@ -146,7 +146,8 @@ export class RegisterShopForm extends Component {
 
 const mapStateToProps = state => ({
   data: state.products.data,
-  isSuccessfullregister: state.products.isSuccessfullregister
+  isSuccessfullregister: state.products.isSuccessfullregister,
+  reg_error :state.products.reg_error
 });
 
 export default connect(
