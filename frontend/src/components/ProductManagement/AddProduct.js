@@ -30,50 +30,32 @@ export class AddProduct extends Component {
         let name =this.state.name
         let description = this.state.description
         let amount =this.state.amount
-        const response =""
+        console.log("handlesubmit")
         
-       // if(name!="" && description!="" && amount >0){
+        if(name!="" && description!="" && amount >0){
             await axios.post(`${baseUrl}/products/${store_id}`, {store_id,name,description,amount})
-            .then((res) => {
-                if(res.data=="Non of the feilds cannot be empty !!!!"){
-                    document.querySelector('#errormsg1').textContent=res.data
-                }
-                else if(res.data=="The name cannot be numeric !!!!"){
-                    document.querySelector('#errormsg1').textContent=res.data
-                }
-                else if(res.data=="Amount should be a positive integer !!!!"){
-                    document.querySelector('#errormsg1').textContent=res.data
-                }
-               else if(res.status==200){
-                    document.querySelector('#errormsg1').textContent="Product Succcessfully added !!!!"
-                }
-                else{
-                    document.querySelector('#errormsg1').textContent=""
-                }
 
-            }).catch((error) => {
-                document.querySelector('#errormsg1').textContent=error
-        })
-    
-        console.log (store_id,name,description,amount)
+            this.setState({
+            //store_id:"", 
+            name : "",
+            description:"",
+            amount:""
+            })
+            document.querySelector('#errormsg1').textContent="Submit Successfull";
+            document.querySelector('#errormsg2').textContent="";
+        }
+        else if (amount < 0){
+            document.querySelector('#errormsg1').textContent="Available amount must be greater than 0"
+        }
+        else if(name=="" || description=="" ){
+            document.querySelector('#errormsg1').textContent="Please complete all the fields";
 
-        this.setState({
-        //store_id:"",
-        name : "",
-        description:"",
-        amount:""
-        })
-      //  document.querySelector('#errormsg1').textContent="Submit Successfull";
-       // document.querySelector('#errormsg2').textContent="";
-   /* }
-    else{
-        document.querySelector('#errormsg1').textContent="Please complete all the fields";
-        document.querySelector('#errormsg2').textContent="Available amount must be greater than 0";
-    }
-       setStore_id('');
-       setName('');
-       setDescription('');
-       setAmount('');*/
+        }
+        else{
+            document.querySelector('#errormsg1').textContent="Please complete all the fields";
+            document.querySelector('#errormsg2').textContent="Available amount must be greater than 0";
+        }
+
     }
     render() {
         if(this.props.isSuccessfullregister||this.props.isloggedin){
@@ -123,7 +105,7 @@ export class AddProduct extends Component {
             Submit
             </button>
             </form>
-            <p class="text-warning" id='errormsg1'></p> 
+            <p class="text-warning" id='errormsg1'></p>
             <p class="text-warning" id='errormsg2'></p> 
             </section>
             </div>
