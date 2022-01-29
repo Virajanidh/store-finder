@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { useEffect, useState } from "react";
 import axios from "axios"
+import { connect } from 'react-redux';
+import Test from './Test';
 
 export class Create extends Component{
     constructor(props){
@@ -15,29 +16,16 @@ export class Create extends Component{
         })
       }
   
-    
-    //const baseUrl ="http://127.0.0.1:5000"
-
-    //const store_id_id = 1
-
-    //const [productsList, setProductsList] = useState([]);
-    //const [productID, setProductId] = useState(null);
-    //const [editDescription, setEditDescription] = useState("");
-    //const [editAmount, setEditAmount] = useState("");
 
     handleDelete = async (id) =>{
         let baseUrl ="http://127.0.0.1:5000"
-      let store_id_id =1
+      let store_id_id =this.props.data.id
         const updatedList = this.state.productsList.filter(product => product.id !== id);
-        //setProductsList(updatedList);
         this.setState({productsList:updatedList})
         await axios.delete(`${baseUrl}/products/${store_id_id}/${id}`)
     }
 
     handleEdit = (product) =>{
-     // setProductId(product.id);
-      //setEditDescription(product.description);
-      //setEditAmount(product.amount);
       this.setState({
         productID :product.id,
         editDescription:product.description,
@@ -46,26 +34,22 @@ export class Create extends Component{
     }
 
     handleChange3 = e =>{
-      // setEditDescription(e.target.value);
       this.setState({editDescription:e.target.value})
    }
    handleChange4 = e =>{
-      // setEditAmount(e.target.value);
       this.setState({editAmount:e.target.value})
-   }
-   test(){
-       console.log("hii")
    }
 
     handleEditSubmit = async (e) =>{
       e.preventDefault();
-      // if(editDescription || editAmount)
       let baseUrl ="http://127.0.0.1:5000"
-      let store_id_id =1
+      let store_id_id =this.props.data.id
       let productID =this.state.productID
       let editDescription =this.state.editDescription
       let editAmount =this.state.editAmount
+      if(editAmount>0 && editDescription !=""){
       const data = await axios.put(`${baseUrl}/products/${store_id_id}/${productID}`,{description: editDescription,amount :editAmount});
+
       console.log(data)
       const updatedProduct = data.data.product;
       const updatedList = this.state.productsList.map(product =>{
@@ -74,21 +58,20 @@ export class Create extends Component{
         }
         return product
       })
-/*setProductsList(updatedList)
-      setEditDescription('');
-      setEditAmount('');
-      setProductId(null);*/
+      
       this.setState({productsList:updatedList,productID:null, editDescription:"",editAmount})
-   }
+    }
+    else{
+      document.querySelector('#errormsg').textContent="Please complete all the fields and available amount must be greater than 0";
+    }
+    }
 
     fetchProducts = async () => {
         let baseUrl ="http://127.0.0.1:5000"
-        let store_id_id =1
+        let store_id_id =this.props.data.id
         const data = await axios.get(`${baseUrl}/products/${store_id_id}`)
         console.log(data);
         const {products} = data.data
-        //console.log({products});
-        //setProductsList(products);
         this.setState({productsList : products})
     }
 
@@ -98,7 +81,7 @@ export class Create extends Component{
     }
 
     render(){
-      //  this.fetchProducts();
+      if(this.props.isSuccessfullregister||this.props.isloggedin){
     return ( 
         
         <div className="home">
@@ -107,7 +90,10 @@ export class Create extends Component{
           {this.state.productsList.map(product => {
             if(this.state.productID === product.id){
               return(
+                <div>
+                  <h5>{ product.name }</h5>
                 <form onSubmit={this.handleEditSubmit} key={product.id}>
+                  
                 <div>
                     <input
                   onChange={this.handleChange3}
@@ -123,16 +109,18 @@ export class Create extends Component{
                   type="number"
                   name="editAmount"
                   id="editAmount"
-                  value={this.editAmount}
+                  value={this.state.editAmount}
                   />
                 </div>
                 <button type="submit">Submit</button>
               </form>
+              <p class="text-warning" id='errormsg'></p> 
+              </div>
               )
             }else{
               return(
                 <div className="product-preview" key={product.id}>
-                  <h2>{ product.name }</h2>
+                  <h5>{ product.name }</h5>
                   <p>Description : { product.description }</p>
                   <p>Amount : { product.amount }</p>
                   <button onClick={() => this.handleEdit(product)}>Edit</button>
@@ -147,7 +135,20 @@ export class Create extends Component{
       
         
      );
+        }
+        else{
+          return(
+            <div><Test/></div>
+          )
+        }
      }
 }
-export default Create;
+const mapStateToProps = state => ({
+  isloggedin : state.products.isloggedin,
+  isSuccessfullregister: state.products. isSuccessfullregister,
+  data :state.products.data
+});
+
+export default connect(mapStateToProps
+  )(Create);
 

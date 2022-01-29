@@ -5,7 +5,6 @@ import { HashRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 
 import Navbar from './components/layout/Navbar';
-import test from './components/home/test';
 import LoginLogoutControl from './components/shop/LoginLogoutControl';
 import Landing from './components/home/Landing';
 import Product from './components/home/Product';

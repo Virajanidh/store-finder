@@ -26,14 +26,18 @@ export class SearchForm extends Component {
     })
   }
 
-  test =()=>{
+  componentDidUpdate(){
     console.log('success')
     console.log('name;',this.state.searchText,'location',this.state.location)
     let searchText =this.state.searchText;
     let  location = this.state.location
     if (searchText !== '' &&  location!== ''){
       this.props.searchProduct(searchText+'/'+location);
+      document.querySelector('#errormsg').textContent=""
     } 
+    else{
+      document.querySelector('#errormsg').textContent="Please complete all the fields";
+    }
   }
   
   onChange = e => {
@@ -48,7 +52,7 @@ export class SearchForm extends Component {
   };
 
   render() {
-    this.test();
+   // this.test();
     return (
       <div>
       <div className="jumbotron jumbotron-fluid mt-5 text-center">
@@ -123,6 +127,7 @@ export class SearchForm extends Component {
             </button>
 
           </form>
+          <p class="text-warning" id='errormsg'></p> 
         </div>
         </div>
 

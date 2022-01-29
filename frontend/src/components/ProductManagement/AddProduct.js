@@ -1,6 +1,8 @@
 import axios from "axios"
-import { Component, useState } from "react";
+import { Component } from "react";
 import React from 'react';
+import { connect } from 'react-redux';
+import Test from './Test';
 
 
 export class AddProduct extends Component {
@@ -8,36 +10,18 @@ export class AddProduct extends Component {
     constructor(props){
         super(props)
         this.state={
-            store_id:"",
+            store_id:this.props.data.id,
             name : "",
             description:"",
             amount:""
         }
     }
 
-
-  /* const [store_id, setStore_id] = useState("");
-   const [name, setName] = useState("");
-   const [description, setDescription] = useState("");
-   const [amount, setAmount] = useState("");
-
-   handleChange1 = e =>{
-       setStore_id(e.target.value);
-   }
-   handleChange2 = e =>{
-       setName(e.target.value);
-   }
-   handleChange3 = e =>{
-       setDescription(e.target.value);
-   }
-   handleChange4 = e =>{
-       setAmount(e.target.value);
-   }*/
-   handleChange=(e)=>{
-    this.setState({
-      [e.target.name] : e.target.value
-    })
-  }
+    handleChange=(e)=>{
+        this.setState({
+        [e.target.name] : e.target.value
+        })
+    }
 
     handleSubmit = async (e) =>{
         const baseUrl ="http://127.0.0.1:5000"
@@ -47,36 +31,38 @@ export class AddProduct extends Component {
         let description = this.state.description
         let amount =this.state.amount
         
-        await axios.post(`${baseUrl}/products/${store_id}`, {store_id,name,description,amount})
+        if(name!="" && description!="" && amount >0){
+            await axios.post(`${baseUrl}/products/${store_id}`, {store_id,name,description,amount})
+        
         console.log (store_id,name,description,amount)
 
         this.setState({
-        store_id:"",
+        //store_id:"",
         name : "",
         description:"",
         amount:""
         })
+        document.querySelector('#errormsg1').textContent="Submit Successfull";
+        document.querySelector('#errormsg2').textContent="";
+    }
+    else{
+        document.querySelector('#errormsg1').textContent="Please complete all the fields";
+        document.querySelector('#errormsg2').textContent="Available amount must be greater than 0";
+    }
     /*       setStore_id('');
        setName('');
        setDescription('');
        setAmount('');*/
     }
     render() {
+        if(this.props.isSuccessfullregister||this.props.isloggedin){
     return ( 
             <div className="create">
                 <h2>Add a product</h2>
                 <section>
             <form onSubmit={this.handleSubmit}>
             <div>
-            <label htmlFor='store_id'>Store ID</label>
-                <br/>
-            <input
-            onChange={this.handleChange}
-            type="number"
-            name="store_id"
-            id="store_id"
-            value={this.state.store_id}
-            />
+
             </div>
             <div>
                 <label htmlFor='name'>Name</label>
@@ -116,10 +102,26 @@ export class AddProduct extends Component {
             Submit
             </button>
             </form>
+            <p class="text-warning" id='errormsg1'></p> 
+            <p class="text-warning" id='errormsg2'></p> 
             </section>
             </div>
         );
     }
+    else{
+        return(
+        <div><Test/></div>
+        )
+    }
+    }
 }
  
-export default AddProduct;
+
+const mapStateToProps = state => ({
+    isloggedin : state.products.isloggedin,
+    isSuccessfullregister: state.products. isSuccessfullregister,
+    data :state.products.data
+  });
+  
+  export default connect(mapStateToProps
+    )(AddProduct);
