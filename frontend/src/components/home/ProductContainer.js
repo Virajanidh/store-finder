@@ -28,6 +28,7 @@ export class ProductsContainer extends Component {
           content.push(row);
         }
       if(content.length===0 && this.props.text !='' && this.props.isUserIn){
+  
         return(
           <div>
           <div class="alert alert-dismissible alert-success" style={{maxWidth:'40rem'}}>

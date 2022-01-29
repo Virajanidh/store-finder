@@ -8,15 +8,18 @@ export const searchProduct = text => dispatch => {
   });
 };
 
-export const fetchProducts = text => dispatch => {
+export const fetchProducts =text  => dispatch => {
   axios
     .get(`http://127.0.0.1:5000/users/products/`+text)
-    .then(response =>
+    .then(response =>{
+      if(response.data.information != null){
       dispatch({
         type: FETCH_PRODUCTS,
         payload: response.data
       })
-    )
+    }
+   
+      })
     .catch(err => console.log(err));
 };
 

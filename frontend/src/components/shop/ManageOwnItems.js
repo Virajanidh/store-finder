@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+//import { AddProduct } from '../ProductManagement/AddProduct';
 
-
+import AddProduct from '../ProductManagement/AddProduct';
 export class ManageOwnItems extends Component {
 
   
@@ -12,8 +13,17 @@ export class ManageOwnItems extends Component {
  
     return(
       <div>
-         
-          <div class="d-grid gap-2">
+         <AddProduct/>
+          
+      </div>
+    );
+  }
+}
+
+
+export default ManageOwnItems;
+
+/*<div class="d-grid gap-2">
           <h1 align = 'center' >Manage your Products</h1>
           <div className='row'>
             <Link style={{maxWidth:'30rem'}} btn btn-outline-primary to={'/create'}>
@@ -27,11 +37,4 @@ export class ManageOwnItems extends Component {
             </Link>
             
           </div>
-        </div>
-      </div>
-    );
-  }
-}
-
-
-export default ManageOwnItems;
+        </div>*/

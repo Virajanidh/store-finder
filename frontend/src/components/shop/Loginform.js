@@ -58,13 +58,14 @@ export class Loginform extends Component {
 
                     </div>
                   </form>
+
                 </div>
               </div>
-
+  
             
             </div>
           </div>
-         
+          <p class="text-warning" id='errormsg'>{this.props.error_msg}</p> 
           </div>
       );
     
@@ -72,7 +73,8 @@ export class Loginform extends Component {
 }
 
 const mapStateToProps = state => ({
-  isloggedin : state.products.isloggedin
+  isloggedin : state.products.isloggedin,
+  error_msg : state.products.error_msg
 });
 
 export default connect(mapStateToProps,

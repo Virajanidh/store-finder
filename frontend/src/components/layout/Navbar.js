@@ -12,6 +12,61 @@ export class Navbar extends Component {
 
   render(){
     const {isSuccessfullregister} = this.props
+    if(isSuccessfullregister||this.props.isloggedin){
+      return(
+        <div>
+      
+          <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+          <div class="container-fluid">
+          <a class="navbar-brand" href="#"><h1>Store Finder</h1></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          
+
+          <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+                <a class="nav-link active" href="/">
+                  <h5> {isSuccessfullregister||this.props.isloggedin ? " " : "Home" } </h5>
+
+                  <span class="visually-hidden">(current)</span>
+                </a>
+              </li>
+              <Link as={NavLink} className="nav-link" to={'/addproduct'}>
+              <button type="button" class="btn btn-primary ">
+              <h6> Add Product </h6></button>
+              </Link>
+              <Link as={NavLink} className="nav-link" to={'/create'}>
+              <button type="button" class="btn btn-primary ">
+              <h6> Edit/Delete Product </h6></button>
+              </Link>
+              <Link as={NavLink} className="nav-link" to={'/areasuggestions'}>
+              <button type="button" class="btn btn-primary ">
+              <h6> Area Suggestions </h6></button>
+              </Link>
+              <Link  as={NavLink} className="nav-link" to={'/'}>
+              <button type="button" class="btn btn-primary " onClick={this.userlogout}>
+              <h6> Logout </h6>
+              </button>
+              </Link>
+              
+
+            </ul>
+      
+          </div>
+          <Link className="btn btn-primary" to={'/suggestions'}>
+        Put your suggestions
+        </Link>
+          <img  src ={myIcon} width="96" height="95" />
+        </div>
+      </nav>
+    </div>
+      )
+    }
+    else{
   return (
     <div>
       
@@ -40,11 +95,6 @@ export class Navbar extends Component {
               <Link as={NavLink} className="nav-link" to={'/loginLogoutControl'}>
               <h5> {this.props.isloggedin || isSuccessfullregister  ? "" : "Log In" } </h5>
               </Link>
-              <Link  as={NavLink} className="nav-link" to={'/'}>
-              <button type="button" class="btn btn-primary " onClick={this.userlogout}>
-              <h5> {this.props.isloggedin || isSuccessfullregister ? "Logout " : " " } </h5>
-              </button>
-              </Link>
               
 
             </ul>
@@ -58,6 +108,8 @@ export class Navbar extends Component {
       </nav>
     </div>
   );
+  }
+  
 }
 
 }

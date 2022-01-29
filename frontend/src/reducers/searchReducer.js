@@ -56,13 +56,16 @@ const searchReducer = (state = initialState, action)=> {
           ...state,
           isSuccessfullregister: action.payload,
           data:action.payload,
-          reg_error:'Successfully registered'
+          reg_error:'Successfully registered',
+          error_msg : ""
         };
         case LOGGEDIN:
           return {
             ...state,
             data : action.payload,
-            isloggedin : true
+            isloggedin : true,
+            error_msg : ""
+
 
           };
         case ERROR_LOGIN:
@@ -75,7 +78,8 @@ const searchReducer = (state = initialState, action)=> {
           return{
             ...state,
             isloggedin : action.payload,
-            isSuccessfullregister :action.payload
+            isSuccessfullregister :action.payload,
+            error_msg : ""
           };
     case REG_ERROR:
       return {

@@ -90,7 +90,11 @@ export const login = data => dispatch => {
     .then((response) => {
         console.log(response)
         if(response.data ==="Email or password is incorrect!"){
-            alert("Email or password is incorrect!")
+            //alert("Email or password is incorrect!")
+            dispatch({
+                type : ERROR_LOGIN ,
+                payload : response.data
+               });
 
         }
         else if (response.status == 200){
@@ -98,6 +102,7 @@ export const login = data => dispatch => {
               type : LOGGEDIN ,
               payload : response.data
              });
+             
              alert("login successfull")
         }
      /*   else if (response.status == 208){
