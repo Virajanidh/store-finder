@@ -86,14 +86,15 @@ export class Create extends Component{
         
         <div className="home">
         <div className="product-list">
-          <h2>All products of the store!</h2>
+          <div className='center'>
+            <h2>All products of the store!</h2>
+          </div>
           {this.state.productsList.map(product => {
             if(this.state.productID === product.id){
               return(
-                <div>
-                  <h5>{ product.name }</h5>
+                <div className="product-preview">
+                  <h3>{ product.name }</h3>
                 <form onSubmit={this.handleEditSubmit} key={product.id}>
-                  
                 <div>
                     <input
                   onChange={this.handleChange3}
@@ -119,12 +120,15 @@ export class Create extends Component{
               )
             }else{
               return(
+                 
                 <div className="product-preview" key={product.id}>
-                  <h5>{ product.name }</h5>
-                  <p>Description : { product.description }</p>
+                  <h3>{ product.name }</h3>
+                  <h6>Description : { product.description }</h6>
                   <p>Amount : { product.amount }</p>
+                  <div className='flex-box-2'>
                   <button onClick={() => this.handleEdit(product)}>Edit</button>
                   <button onClick={() => this.handleDelete(product.id)}>Delete</button>
+                  </div>
                 </div>
               )
             }

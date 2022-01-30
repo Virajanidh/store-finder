@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import {
   searchProduct,
   fetchProducts,
-  setLoading
+  setLoading,
+  searchDistrict,searchName,fetchOnDistrict 
 } from '../../actions/searchActions';
 
 export class SearchForm extends Component {
@@ -37,7 +38,8 @@ if (test.includes('llo')) {
 }
     if (searchText !== '' &&  location!== ''){
       this.props.searchProduct(searchText+"/"+location);
-     // this.props.searchDistrict(location)
+      this.props.searchDistrict(location)
+      this.props.searchName(searchText)
       document.querySelector('#errormsg').textContent=""
     } 
     else{
@@ -52,7 +54,9 @@ if (test.includes('llo')) {
 
   onSubmit = e => {
     e.preventDefault();
-    this.props.fetchProducts(this.props.text);
+    //this.props.fetchOnDistrict(this.props.searchdistrict)
+
+    this.props.fetchProducts(this.props.text)
     this.props.setLoading();
   };
 
@@ -153,10 +157,12 @@ if (test.includes('llo')) {
 */
 
 const mapStateToProps = state => ({
-  text: state.products.text
+  text: state.products.text,
+  searchdistrict:state.products.searchdistrict
 });
 
 export default connect(
   mapStateToProps,
-  { searchProduct, fetchProducts, setLoading }
+  { fetchOnDistrict ,
+    searchProduct, fetchProducts, setLoading ,searchDistrict,searchName}
 )(SearchForm);

@@ -12,3 +12,32 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.center {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  text-align: justify;
+  max-width: 600px;
+  margin: 0 auto;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.product-preview {
+  padding: 1px 16px;
+  max-width: 600px;
+  align-items: center;
+  margin: 20px 450px;
+  border: 1px solid #fcf9f9;
+}
+.product-preview:hover {
+  box-shadow: 1px 3px 5px rgba(133, 11, 11, 0.1);
+}
+.product-preview h3 {
+  align-items: center;
+}
+
+.flex-box-2 {
+  display: flex;
+  justify-content: flex-end;
+}

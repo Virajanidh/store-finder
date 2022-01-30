@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import './grid.css'
 import { connect } from 'react-redux';
-
+import {
+ fetchOnDistrict
+} from '../../actions/searchActions';
 import ProductCard from './ProductCard';
 
 export class ProductsContainer extends Component {
@@ -28,7 +30,7 @@ export class ProductsContainer extends Component {
           content.push(row);
         }
       if(content.length===0 && this.props.text !='' && this.props.isUserIn){
-  
+        this.props.fetchOnDistrict(this.props.searchdistrict,this.props.searchname)
         return(
           <div>
           <div class="alert alert-dismissible alert-success" style={{maxWidth:'40rem'}}>
@@ -50,7 +52,10 @@ export class ProductsContainer extends Component {
 const mapStateToProps = state => ({
   products: state.products.products,
   text : state.products.text,
-  isUserIn :state.products.isUserIn
+  isUserIn :state.products.isUserIn,
+  searchdistrict : state.products.searchdistrict,
+  searchname : state.products.searchname
 });
 
-export default connect(mapStateToProps)(ProductsContainer);
+export default connect(mapStateToProps,
+  {fetchOnDistrict})(ProductsContainer);

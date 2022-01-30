@@ -30,9 +30,10 @@ export class AreaSuggestions extends Component{
         return ( 
             <div className="home" >
             <div className="product-list">
-                <h5>User prefences of the area!</h5>
+                <h2 className='center'>User prefences of the area !!</h2>
 
-                <table class="table table-hover"  style={{maxWidth:"40rem"}}>
+                <div className="product-preview">
+                    <table class="table table-hover"  style={{maxWidth:"40rem"}}>
                     <thead>
                     <tr className="table-success">
                     <th scope="row">Preffered Product</th>
@@ -42,21 +43,17 @@ export class AreaSuggestions extends Component{
                 
                 {this.state.productsList.map(product => (
                     
-
-
                    <tbody>
                     <tr class="table-primary">
                     <th scope="row">{ product.preference }</th>
                     <td>{ product.district }</td>
                     <td> { product.created_at }</td>
-                    
                     </tr>
-                    </tbody>
-                    
-                                
+                    </tbody>        
                     
                 ))}
                 </table> 
+                </div>
                 
             </div>
             </div>

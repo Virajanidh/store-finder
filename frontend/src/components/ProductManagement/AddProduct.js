@@ -30,45 +30,41 @@ export class AddProduct extends Component {
         let name =this.state.name
         let description = this.state.description
         let amount =this.state.amount
-        console.log("handlesubmit")
         
         if(name!="" && description!="" && amount >0){
             await axios.post(`${baseUrl}/products/${store_id}`, {store_id,name,description,amount})
+        
+        console.log (store_id,name,description,amount)
 
-            this.setState({
-            //store_id:"", 
-            name : "",
-            description:"",
-            amount:""
-            })
-            document.querySelector('#errormsg1').textContent="Submit Successfull";
-            document.querySelector('#errormsg2').textContent="";
-        }
-        else if (amount < 0){
-            document.querySelector('#errormsg1').textContent="Available amount must be greater than 0"
-        }
-        else if(name=="" || description=="" ){
-            document.querySelector('#errormsg1').textContent="Please complete all the fields";
-
-        }
-        else{
-            document.querySelector('#errormsg1').textContent="Please complete all the fields";
-            document.querySelector('#errormsg2').textContent="Available amount must be greater than 0";
-        }
-
+        this.setState({
+        //store_id:"",
+        name : "",
+        description:"",
+        amount:""
+        })
+        document.querySelector('#errormsg1').textContent="Submit Successfull";
+        document.querySelector('#errormsg2').textContent="";
+    }
+    else{
+        document.querySelector('#errormsg1').textContent="Please complete all the fields";
+        document.querySelector('#errormsg2').textContent="Available amount must be greater than 0";
+    }
+    /*       setStore_id('');
+       setName('');
+       setDescription('');
+       setAmount('');*/
     }
     render() {
         if(this.props.isSuccessfullregister||this.props.isloggedin){
     return ( 
             <div className="create">
-                <h2>Add a product</h2>
-                <section>
+                <h2 className='center' style={{textContent:'center'}}>Add Products !!</h2>
+                <div className="product-preview">
+                <section className="jumbotron jumbotron-fluid mt-5 text-center">
             <form onSubmit={this.handleSubmit}>
-            <div>
 
-            </div>
             <div>
-                <label htmlFor='name'>Name</label>
+            <label htmlFor='name'>Name</label>
                 <br/>
             <input
             onChange={this.handleChange}
@@ -105,9 +101,10 @@ export class AddProduct extends Component {
             Submit
             </button>
             </form>
-            <p class="text-warning" id='errormsg1'></p>
+            <p class="text-warning" id='errormsg1'></p> 
             <p class="text-warning" id='errormsg2'></p> 
             </section>
+            </div>
             </div>
         );
     }
