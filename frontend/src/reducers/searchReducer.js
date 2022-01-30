@@ -18,7 +18,8 @@ const initialState = {
   error_msg: '',
   reg_error : '',
   searchdistrict :'',
-  searchname:''
+  searchname:'',
+  searchcount:0
 };
 
 const searchReducer = (state = initialState, action)=> {
@@ -27,14 +28,16 @@ const searchReducer = (state = initialState, action)=> {
       return {
         ...state,
         text: action.payload,
-        loading: false
+        loading: false,
+        searchcount:0
       };
     case FETCH_PRODUCTS:
       return {
         ...state,
         products: action.payload,
         isUserIn : true,
-        loading: false
+        loading: false,
+        searchcount:state.searchcount+1
       };
     case FETCH_PRODUCT:
       return {

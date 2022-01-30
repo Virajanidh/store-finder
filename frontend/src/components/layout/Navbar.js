@@ -47,6 +47,10 @@ export class Navbar extends Component {
               <button type="button" class="btn btn-primary ">
               <h6> Area Suggestions </h6></button>
               </Link>
+              <Link as={NavLink} className="nav-link" to={'/profile'}>
+              <button type="button" class="btn btn-primary ">
+              <h6>Your Profile </h6></button>
+              </Link>
               <Link  as={NavLink} className="nav-link" to={'/'}>
               <button type="button" class="btn btn-primary " onClick={this.userlogout}>
               <h6> Logout </h6>

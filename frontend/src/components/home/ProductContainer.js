@@ -29,8 +29,17 @@ export class ProductsContainer extends Component {
           );
           content.push(row);
         }
-      if(content.length===0 && this.props.text !='' && this.props.isUserIn){
+      if(content.length===0 && this.props.text !='' && this.props.isUserIn&& this.props.searchcount<3){
         this.props.fetchOnDistrict(this.props.searchdistrict,this.props.searchname)
+        return(
+          <div>
+          <div class="alert alert-dismissible alert-success" style={{maxWidth:'40rem'}}>
+          <strong>Ooops Sorry!...  </strong>No match found. <p >See you next time!!</p>
+          </div>
+          </div>
+        )
+      }
+      else if (content.length===0 && this.props.text !='' && this.props.isUserIn&& this.props.searchcount===3){
         return(
           <div>
           <div class="alert alert-dismissible alert-success" style={{maxWidth:'40rem'}}>
@@ -54,7 +63,8 @@ const mapStateToProps = state => ({
   text : state.products.text,
   isUserIn :state.products.isUserIn,
   searchdistrict : state.products.searchdistrict,
-  searchname : state.products.searchname
+  searchname : state.products.searchname,
+  searchcount : state.products.searchcount
 });
 
 export default connect(mapStateToProps,

@@ -13,9 +13,7 @@ import Suggestions  from './components/home/Suggestions';
 import Create from './components/ProductManagement/Create';
 import AddProduct  from './components/ProductManagement/AddProduct';
 import AreaSuggestions from './components/ProductManagement/AreaSuggestions';
-
-
-
+import Profile from './components/shop/Profile';
 import store from './store';
 
 class App extends Component {
@@ -33,6 +31,7 @@ class App extends Component {
             <Route exact path="/addproduct" component={AddProduct}/>
             <Route exact path="/create" component={Create} />
             <Route exact path="/suggestions" component={Suggestions} />
+            <Route exact path="/profile" component={Profile} />
             
           </div>
         </Router>
