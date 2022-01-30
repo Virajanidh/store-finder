@@ -30,9 +30,10 @@ export class AddProduct extends Component {
         let name =this.state.name
         let description = this.state.description
         let amount =this.state.amount
-        
-        if(name!="" && description!="" && amount >0){
+        let count =0
+        if(name!="" && description!="" && amount >0 &&count ===0){
             await axios.post(`${baseUrl}/products/${store_id}`, {store_id,name,description,amount})
+            count = 1
         
         console.log (store_id,name,description,amount)
 
@@ -77,7 +78,7 @@ export class AddProduct extends Component {
             <div>
                 <label htmlFor='description'>Description</label>
                 <br/>
-            <input
+            <textarea className="input-element"
             onChange={this.handleChange}
             type="text"
             name="description"

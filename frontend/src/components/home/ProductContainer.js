@@ -29,7 +29,7 @@ export class ProductsContainer extends Component {
           );
           content.push(row);
         }
-      if(content.length===0 && this.props.text !='' && this.props.isUserIn&& this.props.searchcount<3){
+      if(content.length===0 && this.props.text !=='' && this.props.isUserIn&& this.props.searchcount<3){
         this.props.fetchOnDistrict(this.props.searchdistrict,this.props.searchname)
         return(
           <div>
@@ -39,7 +39,7 @@ export class ProductsContainer extends Component {
           </div>
         )
       }
-      else if (content.length===0 && this.props.text !='' && this.props.isUserIn&& this.props.searchcount===3){
+      else if (content.length===0 && this.props.text !=='' && this.props.isUserIn&& this.props.searchcount===3){
         return(
           <div>
           <div class="alert alert-dismissible alert-success" style={{maxWidth:'40rem'}}>

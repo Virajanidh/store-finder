@@ -96,7 +96,7 @@ export class Create extends Component{
                   <h3>{ product.name }</h3>
                 <form onSubmit={this.handleEditSubmit} key={product.id}>
                 <div>
-                    <input
+                    <textarea className="input-element"
                   onChange={this.handleChange3}
                   type="text"
                   name="editDescription"

@@ -3,12 +3,22 @@ import React, { Component } from 'react';
 import axios from "axios"
 import { connect } from 'react-redux';
 import Test from '../ProductManagement/Test';
+import Landing  from '../home/Landing';
 import { logout } from '../../actions/shopActions';
 
 export class Profile extends Component{
     constructor(props){
         super(props)
-            this.state ={productsList:[],productID:null, editDescription:"",editAmount:""}
+            this.state ={storeID :"",
+                editEmail:"",
+                editAddress:"",
+                editCity:"",
+                editDistrict:"",
+                editPassword:"",
+                editName:"",
+                isEdit: false
+            }
+            this.handleChange = this.handleChange.bind(this);
 
         
     }
@@ -21,135 +31,184 @@ export class Profile extends Component{
 
     handleDelete = async (id) =>{
         let baseUrl ="http://127.0.0.1:5000"
-      let store_id_id =this.props.data.id
-        const updatedList = this.state.productsList.filter(product => product.id !== id);
-        this.setState({productsList:updatedList})
-        await axios.delete(`${baseUrl}/products/${store_id_id}/${id}`)
+        await axios.delete(`${baseUrl}/store/${id}`)
         this.props.logout();
     }
 
-    handleEdit = (product) =>{
+    handleEdit = (store) =>{
       this.setState({
-        productID :product.id,
-        editDescription:product.description,
-        editAmount:product.amount 
+        storeID :store.id,
+        editName:store.name,
+        editEmail:store.email,
+        editAddress:store.address ,
+        editCity:store.city,
+        editDistrict:store.district,
+        editPassword:store.password,
+        isEdit:true
       })
     }
 
-    handleChange3 = e =>{
-      this.setState({editDescription:e.target.value})
-   }
-   handleChange4 = e =>{
-      this.setState({editAmount:e.target.value})
-   }
+    handleChange(event){
+        this.setState({
+          [event.target.name] : event.target.value
+        })
+      }
 
     handleEditSubmit = async (e) =>{
       e.preventDefault();
       let baseUrl ="http://127.0.0.1:5000"
-      let store_id_id =this.props.data.id
-      let productID =this.state.productID
-      let editDescription =this.state.editDescription
-      let editAmount =this.state.editAmount
-      if(editAmount>0 && editDescription !=""){
-      const data = await axios.put(`${baseUrl}/products/${store_id_id}/${productID}`,{description: editDescription,amount :editAmount});
-
-      console.log(data)
-      const updatedProduct = data.data.product;
-      const updatedList = this.state.productsList.map(product =>{
-        if (product.id === productID){
-          return product= updatedProduct
+      let editEmail=this.state.editEmail
+      let editAddress=this.state.editAddress
+      let editCity=this.state.editCity
+      let editDistrict=this.state.editDistrict
+      let editPassword=this.state.editPassword;
+      let editName= this.state.editName;
+      let id =this.state.storeID
+        console.log(id)
+      const response = await axios.put(`${baseUrl}/stores/${id}}`,
+      {name:editName,email:editEmail,address:editAddress,city:editCity,
+        district:editDistrict,password:editPassword});
+      document.querySelector('#errormsg').textContent=response.data;
+        if(response.data==="Modification Successfull !!!!"){
+            this.setState({isEdit:false})
         }
-        return product
-      })
       
-      this.setState({productsList:updatedList,productID:null, editDescription:"",editAmount})
     }
-    else{
-      document.querySelector('#errormsg').textContent="Please complete all the fields and available amount must be greater than 0";
-    }
-    }
-
-    fetchProducts = async () => {
-        let baseUrl ="http://127.0.0.1:5000"
-        let store_id_id =this.props.data.id
-        const data = await axios.get(`${baseUrl}/products/${store_id_id}`)
-        console.log(data);
-        const {products} = data.data
-        this.setState({productsList : products})
-    }
-
     
-    componentDidMount(){
-        this.fetchProducts();
-    }
+   
+     
+    
 
     render(){
-      if(this.props.isSuccessfullregister||this.props.isloggedin){
-    return ( 
-        
-        <div className="home">
-        <div className="product-list">
-          <div className='center'>
-            <h2>All products of the store!</h2>
-          </div>
-          {this.state.productsList.map(product => {
-            if(this.state.productID === product.id){
-              return(
-                <div className="product-preview">
-                  <h3>{ product.name }</h3>
-                <form onSubmit={this.handleEditSubmit} key={product.id}>
-                <div>
-                    <input
-                  onChange={this.handleChange3}
-                  type="text"
-                  name="editDescription"
-                  id="editDescription"
-                  value={this.state.editDescription}
-                  />
-                </div>
-                <div>
-                  <input
-                  onChange={this.handleChange4}
-                  type="number"
-                  name="editAmount"
-                  id="editAmount"
-                  value={this.state.editAmount}
-                  />
-                </div>
-                <button type="submit">Submit</button>
-              </form>
-              <p class="text-warning" id='errormsg'></p> 
-              </div>
-              )
-            }else{
-              return(
-                 
-                <div className="product-preview" key={product.id}>
-                  <h3>{ this.props.data.name }</h3>
-                  <h6>Email : { this.props.data.email }</h6>
-                  <h6>Address : { this.props.address }</h6>
-                  <h6>City : {this.props.data.city}</h6>
-                  <h6>District : {this.props.data.district}</h6>
-                  <div className='flex-box-2'>
-                  <button onClick={() => this.handleEdit(product)}>Edit</button>
-                  <button onClick={() => this.handleDelete(this.props.data.id)}>Delete</button>
+     if(this.props.isSuccessfullregister||this.props.isloggedin){
+         if( this.state.isEdit){
+             return(
+            <div className="jumbotron jumbotron-fluid mt-5 text-center">
+
+            <h1>Edit Details</h1>
+            <div className="container">
+            
+              <form id="searchForm"onSubmit={this.handleEditSubmit} >
+                  <div class="form-group">
+                    <label for="exampleInputEmail1" class="form-label mt-4" text-align="left">Store Name</label>
+                    <input type="text" class="form-control" id="editName" aria-describedby="emailHelp" 
+                    placeholder="Enter Name" name = "editName"
+                    value={this.state.editName} onChange={this.handleChange}/>
                   </div>
-                </div>
-              )
-            }
                 
-          })}
-        </div>
-      </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1" class="form-label mt-4" text-align="left">Email address</label>
+                    <input type="email" class="form-control" id="editEmail" aria-describedby="emailHelp" 
+                    placeholder="Enter email" name = "editEmail"
+                    value={this.state.editEmail} onChange={this.handleChange} />
+                  </div>
+                
+                  <div class="form-group">
+                    <label for="exampleTextarea" class="form-label mt-4">Address</label>
+                    <input type="text" class="form-control" id="address" aria-describedby="emailHelp" 
+                    placeholder="Enter address of the shop" name = "editAddress" 
+                    value={this.state.editAddress} onChange={this.handleChange} />
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleTextarea" class="form-label mt-4">City</label>
+                    <input type="text" class="form-control" id="city" aria-describedby="emailHelp" 
+                    placeholder="Enterthe  city" name = "editCity"
+                    value={this.state.editCity} onChange={this.handleChange} />
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="exampleSelect2" class="form-label mt-4">District</label>
+                    <select multiple="" class="form-select" id="exampleSelect2"
+                    value={this.state.editDistrict} name = "editDistrict"
+                    onChange={this.handleChange} 
+                    >
+                      <option value =""></option>
+                      <option value ="ratnapura">Ratnapura</option>
+                      <option value = "kegalle">Kegalle</option>
+                      <option value = "colombo">Colombo</option>
+                      <option value = "kalutara">Kalutara</option>
+                      <option value = "gampaha">Gampaha</option>
+                      <option value = "kandy">Kandy</option>
+                                <option value = "matale">Matale</option>
+                                <option value = "nuwara eliya">Nuwara Eliya</option>
+                                <option value = "galle">Galle</option>
+                                <option value = "matara">Matara</option>
+                                <option value = "hambantota">Hambantota</option>
+                                <option value = "jaffna">Jaffna</option>
+                                <option value = "kilinochchi">Kilinochchi</option>
+                                <option value = "mannar">Mannar</option>
+                                <option value = "vavuniya">Vavuniya</option>
+                                <option value = "mullaitivu">Mullaitivu</option>
+                                <option value = "batticaloa">Batticaloa</option>
+                                <option value = "ampara">Ampara</option>
+                                <option value = "trincomalee">Trincomalee</option>
+                                <option value = "kurunegala">Kurunegala</option>
+                                <option value = "puttalam">Puttalam</option>
+                                <option value = "anuradhapura">Anuradhapura</option>
+                                <option value = "polonnaruwa">Polonnaruwa</option>
+                                <option value = "badulla">Badulla</option>
+                                <option value = "moneragala">Moneragala</option>
+                    </select>
+                  </div>
+    
+    
+                  <div class="form-group">
+                    <label for="exampleInputPassword1" class="form-label mt-4">Password</label>
+                    <input type="password" class="form-control" id="password" 
+                    placeholder="Password" name ="editPassword"
+                     onChange={this.handleChange}/>
+                  </div>
+    
+                <button type="submit" className="btn btn-primary btn-bg mt-3"   > 
+                Do modification
+                </button>
+                
+              </form>
+              <p class="text-warning" id='errormsg'>{this.props.reg_error}</p> 
+            </div>
+          </div>
+             );
+         }
+         else{
+            return ( 
+                <div >
+                    <h2>Your profile!</h2>
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Name : { this.props.data.name }
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Email : { this.props.data.email }
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Address : { this.props.data.address }
+
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                  City : {this.props.data.city}
+                     
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                    District : {this.props.data.district}                     
+                    </li>
+                </ul> 
+                <button type="button" class="btn btn-outline-primary"
+                 onClick={() => this.handleEdit(this.props.data)}>Edit</button>
+                <button type="button" class="btn btn-outline-primary"
+                  onClick={() => this.handleDelete(this.props.data.id)}>Delete</button>                  
+              
+              </div>
+          
       
         
-     );
+            );
+         }
         }
         else{
           return(
-            <div><Test/></div>
+            <div><Landing/></div>
           )
-        }
+        } 
      }
 }
 const mapStateToProps = state => ({
@@ -160,4 +219,6 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps,{logout}
   )(Profile);
+
+  
 

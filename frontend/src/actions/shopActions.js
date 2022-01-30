@@ -22,7 +22,7 @@ export const registerStore = data => dispatch => {
     .post('http://127.0.0.1:5000/register', data )
     .then((response) => {
         console.log(response)
-        if(response.data =="The email already registered!!!" ){
+        if(response.data ==="The email already registered!!!" ){
             //alert("The email already registered!!!")
             dispatch({
                 type : REG_ERROR,
@@ -30,31 +30,31 @@ export const registerStore = data => dispatch => {
                });
 
         }
-        else if(response.data=='Non of the feilds can be empty!!!!'){
+        else if(response.data==='Non of the feilds can be empty!!!!'){
             dispatch({
                 type : REG_ERROR,
                 payload : response.data
                });
         }
-        else if(response.data== 'The feilds name, city, district cannot be numeric !!!!'){
+        else if(response.data==='The feilds name, city, district cannot be numeric !!!!'){
             dispatch({
                 type : REG_ERROR,
                 payload : response.data
                });
         }
-        else if(response.data =='The passowrd should contain atleast 8 charcters with !!!!'){
+        else if(response.data ==='The passowrd should contain atleast 8 charcters with !!!!'){
             dispatch({
                 type : REG_ERROR,
                 payload : response.data
                });
         }
-        else if(response.data=='The password ahould contain atleast one upper case letter !!!!'){
+        else if(response.data==='The password ahould contain atleast one upper case letter !!!!'){
             dispatch({
                 type : REG_ERROR,
                 payload : response.data
                });
         }
-        else if(response.data=='The password ahould contain atleast one integer !!!!'){
+        else if(response.data==='The password ahould contain atleast one integer !!!!'){
             dispatch({
                 type : REG_ERROR,
                 payload : response.data

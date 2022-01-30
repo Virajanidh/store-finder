@@ -40,7 +40,7 @@ export class RegisterShopForm extends Component {
 
 
   onSubmit = e => {
-    if(this.state.name==''|| this.state.address ==''|| this.state.email==''|| this.state.password==''||this.state.city==''|| this.state.district==''){
+    if(this.state.name===''|| this.state.address ===''|| this.state.email===''|| this.state.password===''||this.state.city===''|| this.state.district===''){
       document.querySelector('#errormsg').textContent="Please complete all the fields";
     }
     else{
