@@ -32,10 +32,7 @@ export class SearchForm extends Component {
     console.log('name;',this.state.searchText,'location',this.state.location)
     let searchText =this.state.searchText;
     let  location = this.state.location
-    const test = 'Hello World';
-if (test.includes('llo')) { 
-  console.log("found")
-}
+    
     if (searchText !== '' &&  location!== ''){
       this.props.searchProduct(searchText+"/"+location);
       this.props.searchDistrict(location)
@@ -50,6 +47,8 @@ if (test.includes('llo')) {
   onChange = e => {
     this.props.searchProduct(e.target.value);
   };
+
+ 
 
 
   onSubmit = e => {

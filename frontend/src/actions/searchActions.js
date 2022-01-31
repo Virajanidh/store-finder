@@ -30,7 +30,7 @@ export const fetchOnDistrict = (district,sname)  => dispatch => {
         
         for (let item of options){
             let responsename=item.name
-            if(responsename.includes(sname)){
+            if(responsename.includes(sname) || sname.includes(responsename)){
               content.push(item)
             }
         }

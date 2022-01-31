@@ -193,8 +193,6 @@ export class Profile extends Component{
                     </li>
                 </ul> 
                 <button type="button" class="btn btn-outline-primary"
-                 onClick={() => this.handleEdit(this.props.data)}>Edit</button>
-                <button type="button" class="btn btn-outline-primary"
                   onClick={() => this.handleDelete(this.props.data.id)}>Delete</button>                  
               
               </div>
