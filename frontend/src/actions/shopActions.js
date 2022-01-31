@@ -65,10 +65,10 @@ export const registerStore = data => dispatch => {
               type : REGISTER,
               payload : response.data
              });
-             dispatch({
+           /*  dispatch({
                 type : LOGGEDIN,
-                payload : true
-               });
+              //  payload : true
+               }); */
              
         }
      /*   else if (response.status == 208){

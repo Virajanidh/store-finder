@@ -40,14 +40,14 @@ export class RegisterShopForm extends Component {
 
 
   onSubmit = e => {
-    if(this.state.name===''|| this.state.address ===''|| this.state.email===''|| this.state.password===''||this.state.city===''|| this.state.district===''){
+   /* if(this.state.name===''|| this.state.address ===''|| this.state.email===''|| this.state.password===''||this.state.city===''|| this.state.district===''){
       document.querySelector('#errormsg').textContent="Please complete all the fields";
     }
-    else{
+    else{ */
     e.preventDefault();
     console.log('form submitted')
     this.props.registerStore(this.props.data);
-    }
+   // }
  
   };
 
@@ -82,7 +82,7 @@ export class RegisterShopForm extends Component {
               <div class="form-group">
                 <label for="exampleTextarea" class="form-label mt-4">City</label>
                 <input type="text" class="form-control" id="city" aria-describedby="emailHelp" 
-                placeholder="Enterthe  city" name = "city" onChange={this.handleChange} />
+                placeholder="Enter the  city" name = "city" onChange={this.handleChange} />
               </div>
               
               <div class="form-group">
