@@ -45,11 +45,11 @@ export class Navbar extends Component {
               </Link>
               <Link as={NavLink} className="nav-link" to={'/areasuggestions'}>
               <button type="button" class="btn btn-primary ">
-              <h6> Area Suggestions </h6></button>
+              <h6> Preferences At My Area </h6></button>
               </Link>
               <Link as={NavLink} className="nav-link" to={'/profile'}>
               <button type="button" class="btn btn-primary ">
-              <h6>Your Profile </h6></button>
+              <h6>My Profile </h6></button>
               </Link>
               <Link  as={NavLink} className="nav-link" to={'/'}>
               <button type="button" class="btn btn-primary " onClick={this.userlogout}>
@@ -61,9 +61,7 @@ export class Navbar extends Component {
             </ul>
       
           </div>
-          <Link className="btn btn-primary" to={'/suggestions'}>
-        Put your suggestions
-        </Link>
+
           <img  src ={myIcon} width="96" height="95" />
         </div>
       </nav>
@@ -93,7 +91,7 @@ export class Navbar extends Component {
               </li>
           
               <Link as={NavLink} className="nav-link" to={'/registrationControl'}>
-              <h5> {isSuccessfullregister ? "Hi  "+this.props.data.name : "Register New Store" } </h5>
+              <h5> {isSuccessfullregister ? "Hi  "+this.props.data.name : "Register" } </h5>
                 
               </Link>
               <Link as={NavLink} className="nav-link" to={'/loginLogoutControl'}>
@@ -105,7 +103,7 @@ export class Navbar extends Component {
       
           </div>
           <Link className="btn btn-primary" to={'/suggestions'}>
-        Put your suggestions
+        Add Preferences
         </Link>
           <img  src ={myIcon} width="96" height="95" />
         </div>

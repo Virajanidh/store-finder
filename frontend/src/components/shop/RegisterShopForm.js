@@ -58,26 +58,26 @@ export class RegisterShopForm extends Component {
     return (
       <div className="jumbotron jumbotron-fluid mt-5 text-center">
 
-        <h1>Register New Store</h1>
+        <h1>Register A New Store</h1>
         <div className="container">
         
           <form id="searchForm"onSubmit={this.onSubmit} >
               <div class="form-group">
-                <label for="exampleInputEmail1" class="form-label mt-4" text-align="left">Store Name</label>
+                <label for="exampleInputEmail1" class="form-label mt-4" text-align="left">Name of the store</label>
                 <input type="text" class="form-control" id="name" aria-describedby="emailHelp" 
-                placeholder="Enter Name" name = "name" onChange={this.handleChange}/>
+                placeholder="Enter the name" name = "name" onChange={this.handleChange}/>
               </div>
             
               <div class="form-group">
                 <label for="exampleInputEmail1" class="form-label mt-4" text-align="left">Email address</label>
                 <input type="email" class="form-control" id="email" aria-describedby="emailHelp" 
-                placeholder="Enter email" name = "email" onChange={this.handleChange} />
+                placeholder="Enter the email" name = "email" onChange={this.handleChange} />
               </div>
             
               <div class="form-group">
                 <label for="exampleTextarea" class="form-label mt-4">Address</label>
                 <input type="text" class="form-control" id="address" aria-describedby="emailHelp" 
-                placeholder="Enter address of the shop" name = "address" onChange={this.handleChange} />
+                placeholder="Enter the address" name = "address" onChange={this.handleChange} />
               </div>
               <div class="form-group">
                 <label for="exampleTextarea" class="form-label mt-4">City</label>

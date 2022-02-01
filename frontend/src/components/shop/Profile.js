@@ -226,7 +226,7 @@ export class Profile extends Component {
           <div className="home">
           <div className="product-list">
             <div className='center'>
-            <h2>Your profile!</h2></div>
+            <h2>My profile!</h2></div>
             <div className="product-preview">
               <h6>
                 Name : {this.props.data.name}

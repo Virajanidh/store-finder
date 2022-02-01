@@ -36,7 +36,7 @@ export class AreaSuggestions extends Component{
                     <table class="table table-hover"  style={{maxWidth:"40rem"}}>
                     <thead>
                     <tr className="table-success">
-                    <th scope="row">Preffered Product</th>
+                    <th scope="row">Preferred Product</th>
                     <td>Area</td>
                     <td>Date</td>
                     </tr></thead>
