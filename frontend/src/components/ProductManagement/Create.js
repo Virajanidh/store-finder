@@ -18,7 +18,7 @@ export class Create extends Component{
   
 
     handleDelete = async (id) =>{
-        let baseUrl ="http://127.0.0.1:5000"
+        let baseUrl ="http://storefinder-webapp.azurewebsites.net"
       let store_id_id =this.props.data.id
         const updatedList = this.state.productsList.filter(product => product.id !== id);
         this.setState({productsList:updatedList})
@@ -42,7 +42,7 @@ export class Create extends Component{
 
     handleEditSubmit = async (e) =>{
       e.preventDefault();
-      let baseUrl ="http://127.0.0.1:5000"
+      let baseUrl ="https://storefinder-webapp.azurewebsites.net"
       let store_id_id =this.props.data.id
       let productID =this.state.productID
       let editDescription =this.state.editDescription
@@ -67,7 +67,7 @@ export class Create extends Component{
     }
 
     fetchProducts = async () => {
-        let baseUrl ="http://127.0.0.1:5000"
+        let baseUrl ="https://storefinder-webapp.azurewebsites.net"
         let store_id_id =this.props.data.id
         const data = await axios.get(`${baseUrl}/products/${store_id_id}`)
         console.log(data);

@@ -25,7 +25,7 @@ export class Suggestions extends Component {
     e.preventDefault();
 
      axios
-        .post('http://127.0.0.1:5000/preferences', this.state )
+        .post('https://storefinder-webapp.azurewebsites.net/preferences', this.state )
         .then((response) => {
             console.log(response)
             if (response.status == 200){

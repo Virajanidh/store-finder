@@ -24,7 +24,7 @@ export class AddProduct extends Component {
     }
 
     handleSubmit = async (e) =>{
-        const baseUrl ="http://127.0.0.1:5000"
+        const baseUrl ="https://storefinder-webapp.azurewebsites.net"
         e.preventDefault();
         let store_id=this.state.store_id
         let name =this.state.name

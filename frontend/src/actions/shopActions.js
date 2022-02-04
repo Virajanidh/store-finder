@@ -19,7 +19,7 @@ export const logout = () => {
 export const registerStore = data => dispatch => {
 
     axios
-    .post('http://127.0.0.1:5000/register', data )
+    .post('https://storefinder-webapp.azurewebsites.net/register', data )
     .then((response) => {
         console.log(response)
         if(response.data ==="The email already registered!!!" ){
@@ -86,7 +86,7 @@ export const registerStore = data => dispatch => {
 export const login = data => dispatch => {
 
     axios
-    .post('http://127.0.0.1:5000/login', data )
+    .post('https://storefinder-webapp.azurewebsites.net/login', data )
     .then((response) => {
         console.log(response)
         if(response.data ==="Email or password is incorrect!"){

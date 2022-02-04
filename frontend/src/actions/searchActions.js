@@ -22,7 +22,7 @@ export const searchName =text  => dispatch => {
 
 export const fetchOnDistrict = (district,sname)  => dispatch => {
   axios
-    .get(`http://127.0.0.1:5000/product/`+district)
+    .get(`https://storefinder-webapp.azurewebsites.net/product/`+district)
     .then(response =>{
       if(response.data.information != null){
         let content=[]
@@ -49,7 +49,7 @@ export const fetchOnDistrict = (district,sname)  => dispatch => {
 
 export const fetchProducts =text  => dispatch => {
   axios
-    .get(`http://127.0.0.1:5000/users/products/`+text)
+    .get(`https://storefinder-webapp.azurewebsites.net/users/products/`+text)
     .then(response =>{
       if(response.data.information != null){
       dispatch({
@@ -64,7 +64,7 @@ export const fetchProducts =text  => dispatch => {
 
 export const fetchProduct = id => dispatch => {
   axios
-    .get(`http://127.0.0.1:5000/products/`+id)
+    .get(`https://storefinder-webapp.azurewebsites.net/products/`+id)
     .then(response =>
       dispatch({
         type: FETCH_PRODUCT,

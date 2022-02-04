@@ -11,7 +11,7 @@ export class AreaSuggestions extends Component{
       }
 
     fetchPreferences = async () =>{
-        const baseUrl ="http://localhost:5000"
+        const baseUrl ="https://storefinder-webapp.azurewebsites.net"
         const store_id_id = this.props.data.id
         console.log(store_id_id)
         const data = await axios.get(`${baseUrl}/preferences/${store_id_id}`)
